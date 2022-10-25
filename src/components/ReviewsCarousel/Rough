@@ -1,0 +1,65 @@
+class ReviewsCarousel extends Component {
+  state = {
+    ReviewDetailNo: 0,
+  }
+
+  IncrementTheCount = () => {
+    const {ReviewDetailNo} = this.state
+    const rightClickNum = ReviewDetailNo + 1
+
+    this.setState({ReviewDetailNo: rightClickNum})
+  }
+
+  DecrementTheCount = () => {
+    const {ReviewDetailNo} = this.state
+    const leftClickNum = ReviewDetailNo - 1
+
+    this.seState({ReviewDetailNo: leftClickNum})
+  }
+
+  render() {
+    const {reviewsList} = this.props
+    const {ReviewDetailNo} = this.state
+    const reviewItem = reviewsList[ReviewDetailNo]
+
+    return (
+      <div className="mainContainer">
+        <h1 className="heading">Reviews</h1>
+
+        <div className="peopleContainer">
+          <button
+            testid="leftArrow"
+            onClick={this.DecrementTheCount}
+            className="buttonStyle"
+            type="button"
+          >
+            <img
+              src="https://assets.ccbp.in/frontend/react-js/left-arrow-img.png"
+              alt="left arrow"
+            />
+          </button>
+          <div className="reviewContainer">
+            <img src={reviewItem.imgUrl} alt={reviewItem.username} />
+            <p>{reviewItem.username}</p>
+            <p>{reviewItem.companyName}</p>
+            <p>{reviewItem.description}</p>
+          </div>
+
+          <button
+            onClick={this.IncrementTheCount}
+            className="buttonStyle"
+            testid="rightArrow"
+            type="button"
+          >
+            <img
+              src="https://assets.ccbp.in/frontend/react-js/right-arrow-img.png"
+              alt="right arrow"
+            />
+          </button>
+        </div>
+      </div>
+    )
+  }
+}
+
+export default ReviewsCarousel
