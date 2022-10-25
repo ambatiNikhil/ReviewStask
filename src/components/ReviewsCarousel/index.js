@@ -7,7 +7,7 @@ class ReviewsCarousel extends Component {
     activeItemIndex: 0,
   }
 
-  onLeftButtonClick = () => {
+  onRightButtonClick = () => {
     const {activeItemIndex} = this.state
     const {reviewsList} = this.props
 
@@ -22,7 +22,7 @@ class ReviewsCarousel extends Component {
     const {imgUrl, username, companyName, description} = review
 
     return (
-      <div className="reviewContainer">
+      <div className="revreviewContainer">
         <img src={imgUrl} alt={username} />
         <p>{username}</p>
         <p>{companyName}</p>
@@ -31,7 +31,7 @@ class ReviewsCarousel extends Component {
     )
   }
 
-  onRightButtonClick = () => {
+  onLeftButtonClick = () => {
     const {activeItemIndex} = this.state
 
     if (activeItemIndex > 0) {
@@ -44,7 +44,7 @@ class ReviewsCarousel extends Component {
   render() {
     const {activeItemIndex} = this.state
     const {reviewsList} = this.props
-    const cardToBeDisplayed = reviewsList[activeItemIndex]
+    const containerToBeDisplayed = reviewsList[activeItemIndex]
 
     return (
       <div className="mainContainer">
@@ -52,18 +52,22 @@ class ReviewsCarousel extends Component {
         <div className="peopleContainer">
           <button
             type="button"
-            className="buttonStyle"
             onClick={this.onLeftButtonClick}
+            testid="leftArrow"
+            className="buttonStyle"
           >
             <img
               src="https://assets.ccbp.in/frontend/react-js/left-arrow-img.png"
               alt="left arrow"
             />
           </button>
-          {this.renderTheReviewItem(cardToBeDisplayed)}
+
+          {this.renderTheReviewItem(containerToBeDisplayed)}
+
           <button
             type="button"
             onClick={this.onRightButtonClick}
+            testid="rightArrow"
             className="buttonStyle"
           >
             <img
